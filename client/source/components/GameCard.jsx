@@ -1,35 +1,28 @@
 import React from 'react';
-import interact from 'interactjs';
 import styled from 'styled-components';
+import { useDrag } from 'react-dnd';
 
 const StyledGameCard = styled.div`
-  background-color: grey;
+  background-image: ${(props) => `url(${props.image})`};
   border: 1px solid green;
+  border-radius: 0.5rem;
   position: relative;
-  width: 200px;
-  height: 400px;
+  width: 150px;
+  height: 250px;
+  margin: 2px;
+  opacity: ${(props) => (props.isDragging ? 0.5 : 1.0)};
 `;
 
-const position = { x: 0, y: 0 }
+const GameCard = function CreateGameCard({ card }) {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: 'DRAGGABLE_CARD',
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  }));
 
-interact('.draggable').draggable({
-  listeners: {
-    start(event) {
-      console.log(event.type, event.target);
-    },
-    move(event) {
-      position.x += event.dx;
-      position.y += event.dy;
-
-      event.target.style.transform = `translate(${position.x}px, ${position.y}px)`;
-    },
-  },
-});
-
-
-const GameCard = function CreateGameCard() {
   return (
-    <StyledGameCard className="draggable">GAME CARD</StyledGameCard>
+    <StyledGameCard ref={drag} isDragging={isDragging} image={card} />
   );
 };
 

@@ -1,14 +1,25 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import GameCard from './GameCard';
+import CardSlot from './CardSlot';
 
+
+const StyledGameSpace = styled.div`
+  display: flex;
+  position: relative;
+  color: white;
+  border: 1px solid blue;
+  margin: 2px;
+`;
 
 const GameSpace = function CreateGameSpace() {
   return (
-    <div style={{ position: 'relative', color: 'white', border: '1px solid red' }}>
+    <StyledGameSpace>
       GAME SPACE
-      <GameCard />
-    </div>
+      <CardSlot />
+      <CardSlot />
+      <CardSlot />
+    </StyledGameSpace>
   );
 };
 

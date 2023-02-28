@@ -1,25 +1,32 @@
 import React, { useEffect, useRef } from 'react';
 
 
-function Star(x, y, r, color) {
+function Star(x, y, radius, color) {
   this.x = x;
   this.y = y;
-  this.r = r;
-  this.rDelta = 0.015;
+  this.initialSize = radius;
+  this.radius = radius;
+  this.rDelta = 0.025 * Math.random();
+  this.xDelta = 0.125;
   this.color = color;
 }
 Star.prototype = {
   render(context) {
     context.beginPath();
-    context.arc(this.x, this.y, this.r, 0, 360, false);
+    context.arc(this.x, this.y, this.radius, 0, 360, false);
     context.fillStyle = this.color;
     context.fill();
   },
   update() {
-    if ((this.r > 2 || this.r < 0.8)) {
+    if ((this.radius > 2 || this.radius < 0.8)) {
       this.rDelta = -this.rDelta;
     }
-    this.r += this.rDelta;
+    this.radius += this.rDelta;
+
+    if (this.x > window.innerWidth) {
+      this.x = 0;
+    }
+    this.x += this.xDelta * this.initialSize;
   },
 };
 

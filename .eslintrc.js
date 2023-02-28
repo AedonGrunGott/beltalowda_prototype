@@ -35,5 +35,12 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'off',
     ],
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['event', 'context'],
+      },
+    ],
   },
 };
