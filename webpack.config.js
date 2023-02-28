@@ -2,6 +2,7 @@ const Dotenv = require('dotenv-webpack');
 const path = require('path');
 
 module.exports = {
+  devtool: 'source-map',
   entry: path.join(__dirname, 'client', 'source', 'index.jsx'),
   mode: 'development',
   module: {
