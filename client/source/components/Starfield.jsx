@@ -1,62 +1,77 @@
 import React, { useEffect, useRef } from 'react';
 
+
+function Star(x, y, r, color) {
+  this.x = x;
+  this.y = y;
+  this.r = r;
+  this.rDelta = 0.015;
+  this.color = color;
+}
+Star.prototype = {
+  render(context) {
+    context.beginPath();
+    context.arc(this.x, this.y, this.r, 0, 360, false);
+    context.fillStyle = this.color;
+    context.fill();
+  },
+  update() {
+    if (this.r > 2 || this.r < 0.8) {
+      this.rDelta = -this.rDelta;
+    }
+    this.r += this.rDelta;
+  },
+};
+
+function randomColor() {
+  const arrColors = ['ffffff', 'ffecd3', 'bfcfff'];
+  return `#${arrColors[Math.floor((Math.random() * 3))]}`;
+}
+
 const Starfield = function CreateStarfieldBackground() {
   const canvasRef = useRef(null);
 
-  function getRandom(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
   useEffect(() => {
-    const starCount = 1000;
+    const starCount = 600;
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
 
-    function generateStarPositions(count) {
-      const starArray = [];
-      const canvas = canvasRef.current;
-      for (let i = 0; i < count; i += 1) {
-        const xPos = Math.random() * canvas.offsetWidth;
-        const yPos = Math.random() * canvas.offsetHeight;
-        const radius = Math.random() * 1.3;
-        starArray.push([xPos, yPos, radius]);
-      }
-      return starArray;
+    const arrStars = [];
+    for (let i = 0; i < starCount; i += 1) {
+      const randX = Math.floor((Math.random() * canvas.width) + 1);
+      const randY = Math.floor((Math.random() * canvas.height) + 1);
+      const randR = Math.random() * 1.7 + 0.5;
+
+      const star = new Star(randX, randY, randR, randomColor());
+      arrStars.push(star);
     }
-    const starArray = generateStarPositions(starCount);
 
-    function drawStars(stars) {
-      const hueRange = [60, 80, 240];
+    function update() {
+      arrStars.forEach((star) => { star.update(); });
+    }
 
-      const canvas = canvasRef.current;
-      const context = canvas.getContext('2d');
+    function animate() {
+      update();
 
       context.fillStyle = '#000000';
       context.fillRect(0, 0, canvas.width, canvas.height);
-
-      stars.forEach((star) => {
-        const xPos = star[0];
-        const yPos = star[1];
-        const radius = star[2];
-
-        const hue = hueRange[getRandom(0, hueRange.length - 1)];
-        const saturation = getRandom(20, 50);
-        const lightness = getRandom(50, 90);
-
-        context.beginPath();
-        context.arc(xPos, yPos, radius, 0, 360);
-        context.fillStyle = `hsla(${hue},${saturation}%,${lightness}%,0.8`;
-        context.fill();
-      });
+      for (let i = 0; i < arrStars.length; i += 1) {
+        arrStars[i].render(context);
+      }
+      requestAnimationFrame(animate);
     }
-    drawStars(starArray);
+
+    animate();
   }, []);
 
 
   return (
     <canvas
+      style={{ position: 'absolute', width: '100%', height: 'auto' }}
       ref={canvasRef}
       id="starfield"
-      width="800"
-      height="600"
+      width={window.innerWidth}
+      height={window.innerHeight}
     />
   );
 };
