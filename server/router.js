@@ -7,6 +7,7 @@ const controllers = require('./controllers');
 
 
 router.use('/', express.static(path.join(__dirname, '../client/dist')));
+router.use('/images', express.static(path.join(__dirname, '../client/images')));
 router.get('*', controllers.return404Page);
 
 

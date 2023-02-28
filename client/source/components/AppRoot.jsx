@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Earth from './Earth';
 import GameSpace from './GameSpace';
 import HandSpace from './HandSpace';
 import Header from './Header';
@@ -10,6 +11,7 @@ const AppRoot = function CreateAppRoot() {
   return (
     <>
       <Starfield starCount="1000" />
+      <Earth />
       <Header />
       <GameSpace />
       <HandSpace />

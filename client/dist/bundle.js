@@ -764,19 +764,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _GameSpace__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GameSpace */ "./client/source/components/GameSpace.jsx");
-/* harmony import */ var _HandSpace__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HandSpace */ "./client/source/components/HandSpace.jsx");
-/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Header */ "./client/source/components/Header.jsx");
-/* harmony import */ var _Starfield__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Starfield */ "./client/source/components/Starfield.jsx");
+/* harmony import */ var _Earth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Earth */ "./client/source/components/Earth.jsx");
+/* harmony import */ var _GameSpace__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GameSpace */ "./client/source/components/GameSpace.jsx");
+/* harmony import */ var _HandSpace__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./HandSpace */ "./client/source/components/HandSpace.jsx");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Header */ "./client/source/components/Header.jsx");
+/* harmony import */ var _Starfield__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Starfield */ "./client/source/components/Starfield.jsx");
+
 
 
 
 
 
 var AppRoot = function CreateAppRoot() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Starfield__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Starfield__WEBPACK_IMPORTED_MODULE_5__["default"], {
     starCount: "1000"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Header__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameSpace__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HandSpace__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Earth__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GameSpace__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HandSpace__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AppRoot);
 
@@ -806,6 +808,35 @@ var CardSlot = function CreateCardSlot() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StyledCardSlot, null, "CARD SLOT");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CardSlot);
+
+/***/ }),
+
+/***/ "./client/source/components/Earth.jsx":
+/*!********************************************!*\
+  !*** ./client/source/components/Earth.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+
+
+var StyledEarth = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].img.withConfig({
+  displayName: "Earth__StyledEarth",
+  componentId: "sc-1r68esc-0"
+})(["position:fixed;bottom:0;width:100%;"]);
+var Earth = function CreateEarth() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StyledEarth, {
+    src: "/images/earth_orbit.png"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Earth);
 
 /***/ }),
 
