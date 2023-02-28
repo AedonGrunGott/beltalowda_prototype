@@ -6,4 +6,4 @@ function return404Page(request, response) {
 
 module.exports = {
   return404Page,
-}
+};
