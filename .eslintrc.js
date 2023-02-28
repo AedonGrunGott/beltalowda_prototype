@@ -26,5 +26,14 @@ module.exports = {
         max: 2,
       },
     ],
+    'react-hooks/exhaustive-deps': [
+      'warn',
+    ],
+    'react/prop-types': [
+      'off',
+    ],
+    'import/no-extraneous-dependencies': [
+      'off',
+    ],
   },
 };

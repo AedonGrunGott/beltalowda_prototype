@@ -16,7 +16,7 @@ Star.prototype = {
     context.fill();
   },
   update() {
-    if (this.r > 2 || this.r < 0.8) {
+    if ((this.r > 2 || this.r < 0.8)) {
       this.rDelta = -this.rDelta;
     }
     this.r += this.rDelta;
@@ -24,26 +24,30 @@ Star.prototype = {
 };
 
 function randomColor() {
-  const arrColors = ['ffffff', 'ffecd3', 'bfcfff'];
-  return `#${arrColors[Math.floor((Math.random() * 3))]}`;
+  const arrColors = ['#ffffff', '#ffecd3', '#bfcfff'];
+  return `${arrColors[Math.floor((Math.random() * 3))]}`;
 }
 
-const Starfield = function CreateStarfieldBackground() {
+
+const Starfield = function CreateStarfieldBackground({ starCount }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    const starCount = 600;
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    const arrStars = [];
-    for (let i = 0; i < starCount; i += 1) {
-      const randX = Math.floor((Math.random() * canvas.width) + 1);
-      const randY = Math.floor((Math.random() * canvas.height) + 1);
-      const randR = Math.random() * 1.7 + 0.5;
+    let arrStars = [];
 
-      const star = new Star(randX, randY, randR, randomColor());
-      arrStars.push(star);
+    function generateStars() {
+      arrStars = [];
+      for (let i = 0; i < starCount; i += 1) {
+        const xPos = Math.floor((Math.random() * canvas.width) + 1);
+        const yPos = Math.floor((Math.random() * canvas.height) + 1);
+        const radius = Math.random() * 1 + 0.5;
+
+        const star = new Star(xPos, yPos, radius, randomColor());
+        arrStars.push(star);
+      }
     }
 
     function update() {
@@ -51,6 +55,11 @@ const Starfield = function CreateStarfieldBackground() {
     }
 
     function animate() {
+      if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        generateStars();
+      }
       update();
 
       context.fillStyle = '#000000';
@@ -61,17 +70,16 @@ const Starfield = function CreateStarfieldBackground() {
       requestAnimationFrame(animate);
     }
 
+    generateStars();
     animate();
   }, []);
 
 
   return (
     <canvas
-      style={{ position: 'absolute', width: '100%', height: 'auto' }}
+      style={{ display: 'block', position: 'fixed', width: '100%' }}
       ref={canvasRef}
       id="starfield"
-      width={window.innerWidth}
-      height={window.innerHeight}
     />
   );
 };

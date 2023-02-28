@@ -1,22 +1,17 @@
 import React from 'react';
 
+import GameSpace from './GameSpace';
+import Header from './Header';
 import Starfield from './Starfield';
 
 
 const AppRoot = function CreateAppRoot() {
   return (
-    <div>
-      <Starfield />
-      <div style={{
-        color: 'white',
-        position: 'relative',
-        fontSize: '4rem',
-        fontFamily: '"Press Start 2P"',
-      }}
-      >
-        BELTALOWDA
-      </div>
-    </div>
+    <>
+      <Starfield starCount="1000" />
+      <Header />
+      <GameSpace />
+    </>
   );
 };
 
