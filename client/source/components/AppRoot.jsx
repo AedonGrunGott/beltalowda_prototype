@@ -1,9 +1,11 @@
 import React from 'react';
 
+import Starfield from './Starfield';
+
 
 const AppRoot = function CreateAppRoot() {
   return (
-    <div>APP ROOT</div>
+    <Starfield />
   );
 };
 
