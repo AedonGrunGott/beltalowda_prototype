@@ -40,7 +40,7 @@ const HandSpace = function CreateHandSpace() {
   return (
     <StyledHandSpace onDragOver={handleDragOver} onDrop={handleDrop}>
       HAND SPACE
-      {cardImages.map((card) => <GameCard key={card} card={card} />)}
+      {cardImages.map((card) => <GameCard key={card.name} card={card} />)}
     </StyledHandSpace>
   );
 };
