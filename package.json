@@ -24,7 +24,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "socket.io": "^4.6.1",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "use-sound": "^4.0.1"
   },
   "scripts": {
     "client-dev": "npx webpack --config webpack.config.js -w",

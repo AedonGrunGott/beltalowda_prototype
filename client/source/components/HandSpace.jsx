@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import useSound from 'use-sound';
 
 import GameCard from './GameCard';
 
@@ -19,10 +20,16 @@ const cardImages = [
   'https://static.wikia.nocookie.net/expanse/images/1/16/Tynan_.png'];
 
 const HandSpace = function CreateHandSpace() {
+  const [clickSound] = useSound(
+    '/sounds/card_touch.wav',
+    { volume: 1.0 },
+  );
+
   function handleDrop(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData('card', event.target.id);
     event.target.appendChild(document.getElementById(data));
+    clickSound();
   }
 
   function handleDragOver(event) {

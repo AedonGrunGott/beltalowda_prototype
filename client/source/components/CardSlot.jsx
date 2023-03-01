@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import useSound from 'use-sound';
 
 
 const StyledCardSlot = styled.div`
@@ -12,6 +13,11 @@ const StyledCardSlot = styled.div`
 const CardSlot = function CreateCardSlot({ slot }) {
   const [cards, setCards] = useState([]);
 
+  const [clickSound] = useSound(
+    '/sounds/card_touch.wav',
+    { volume: 1.0 },
+  );
+
   function handleDrop(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData('card', event.target.id);
@@ -20,6 +26,7 @@ const CardSlot = function CreateCardSlot({ slot }) {
     } catch (error) {
       console.error(error);
     }
+    clickSound();
   }
 
   function handleDragOver(event) {

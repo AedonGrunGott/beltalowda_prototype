@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+
 const StyledGameCard = styled.div`
   background-image: ${(props) => `url(${props.image})`};
   border: 1px solid green;
