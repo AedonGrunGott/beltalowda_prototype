@@ -10,7 +10,7 @@ const StyledHandSpace = styled.div`
   position: relative;
   color: white;
   border: 1px solid red;
-  margin: 2px;
+  margin: 10px;
 `;
 
 const cardImages = [
@@ -18,20 +18,20 @@ const cardImages = [
   'https://static.wikia.nocookie.net/expanse/images/5/54/RociArtS4.png',
   'https://static.wikia.nocookie.net/expanse/images/1/16/Tynan_.png'];
 
-function handleDrop(event) {
-  console.log('dropped');
-  event.preventDefault();
-  const data = event.dataTransfer.getData('json', event.target.id);
-  event.target.appendChild(document.getElementById(data));
-}
-
-function allowDrop(event) {
-  event.preventDefault();
-}
-
 const HandSpace = function CreateHandSpace() {
+  function handleDrop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData('card', event.target.id);
+    event.target.appendChild(document.getElementById(data));
+  }
+
+  function handleDragOver(event) {
+    event.preventDefault();
+    console.log('hover hand');
+  }
+
   return (
-    <StyledHandSpace onDragOver={allowDrop} onDrop={handleDrop}>
+    <StyledHandSpace onDragOver={handleDragOver} onDrop={handleDrop}>
       HAND SPACE
       {cardImages.map((card) => <GameCard key={card} card={card} />)}
     </StyledHandSpace>

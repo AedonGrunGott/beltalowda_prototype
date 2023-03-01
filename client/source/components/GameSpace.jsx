@@ -9,7 +9,7 @@ const StyledGameSpace = styled.div`
   position: relative;
   color: white;
   border: 1px solid blue;
-  margin: 2px;
+  margin: 10px;
 `;
 
 const cardSlots = ['LEFT', 'CENTER', 'RIGHT'];

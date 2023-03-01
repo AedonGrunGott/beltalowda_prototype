@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledGameCard = styled.div`
@@ -9,16 +9,30 @@ const StyledGameCard = styled.div`
   width: 150px;
   height: 250px;
   margin: 4px;
+  opacity: ${(props) => (props.isDragging ? 0.5 : 1.0)};
 `;
 
-function handleDrag(event) {
-  console.log('dragging');
-  event.dataTransfer.setData('json', event.target.id);
-}
-
 const GameCard = function CreateGameCard({ card }) {
+  const [isDragging, setIsDragging] = useState(false);
+
+  function handleDragStart(event) {
+    setIsDragging(true);
+    event.dataTransfer.setData('card', event.target.id);
+  }
+
+  function handleDragEnd() {
+    setIsDragging(false);
+  }
+
   return (
-    <StyledGameCard id={card} draggable="true" onDragStart={handleDrag} image={card} />
+    <StyledGameCard
+      id={card}
+      draggable="true"
+      isDragging={isDragging}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      image={card}
+    />
   );
 };
 

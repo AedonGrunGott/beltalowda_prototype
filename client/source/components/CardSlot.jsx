@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 
@@ -9,22 +9,30 @@ const StyledCardSlot = styled.div`
   margin: 2px;
 `;
 
-function handleDrop(event) {
-  console.log('dropped');
-  event.preventDefault();
-  const data = event.dataTransfer.getData('json', event.target.id);
-  event.target.appendChild(document.getElementById(data));
-}
-
-function allowDrop(event) {
-  event.preventDefault();
-}
-
 const CardSlot = function CreateCardSlot({ slot }) {
+  const [cards, setCards] = useState([]);
+
+  function handleDrop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData('card', event.target.id);
+    try {
+      event.target.appendChild(document.getElementById(data));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function handleDragOver(event) {
+    event.preventDefault();
+    console.log('hover slot');
+  }
+
+  useEffect(() => {
+    console.log('render cardslot');
+  });
+
   return (
-    <StyledCardSlot id={slot} onDragOver={allowDrop} onDrop={handleDrop}>
-      {slot}
-    </StyledCardSlot>
+    <StyledCardSlot id={slot} onDragOver={handleDragOver} onDrop={handleDrop} />
   );
 };
 
