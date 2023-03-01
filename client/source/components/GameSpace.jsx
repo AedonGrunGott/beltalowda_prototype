@@ -12,13 +12,13 @@ const StyledGameSpace = styled.div`
   margin: 2px;
 `;
 
+const cardSlots = ['LEFT', 'CENTER', 'RIGHT'];
+
 const GameSpace = function CreateGameSpace() {
   return (
     <StyledGameSpace>
       GAME SPACE
-      <CardSlot />
-      <CardSlot />
-      <CardSlot />
+      {cardSlots.map((slot) => <CardSlot key={slot} slot={slot} />)}
     </StyledGameSpace>
   );
 };

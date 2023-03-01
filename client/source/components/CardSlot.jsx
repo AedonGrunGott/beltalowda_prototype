@@ -9,11 +9,21 @@ const StyledCardSlot = styled.div`
   margin: 2px;
 `;
 
+function handleDrop(event) {
+  console.log('dropped');
+  event.preventDefault();
+  const data = event.dataTransfer.getData('json', event.target.id);
+  event.target.appendChild(document.getElementById(data));
+}
 
-const CardSlot = function CreateCardSlot() {
+function allowDrop(event) {
+  event.preventDefault();
+}
+
+const CardSlot = function CreateCardSlot({ slot }) {
   return (
-    <StyledCardSlot>
-      CARD SLOT
+    <StyledCardSlot id={slot} onDragOver={allowDrop} onDrop={handleDrop}>
+      {slot}
     </StyledCardSlot>
   );
 };

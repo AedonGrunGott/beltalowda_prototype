@@ -11,9 +11,14 @@ const StyledGameCard = styled.div`
   margin: 2px;
 `;
 
+function handleDrag(event) {
+  console.log('dragging');
+  event.dataTransfer.setData('json', event.target.id);
+}
+
 const GameCard = function CreateGameCard({ card }) {
   return (
-    <StyledGameCard image={card} />
+    <StyledGameCard id={card} draggable="true" onDragStart={handleDrag} image={card} />
   );
 };
 
