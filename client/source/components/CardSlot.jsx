@@ -23,6 +23,7 @@ const CardSlot = function CreateCardSlot({ slot }) {
   function handleDrop(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData('card', event.target.id);
+    console.log('dropping', data, 'into', event.target.id, cards);
     try {
       event.target.appendChild(document.getElementById(data));
     } catch (error) {

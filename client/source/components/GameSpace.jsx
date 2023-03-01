@@ -5,7 +5,7 @@ import CardSlot from './CardSlot';
 
 
 const StyledGameSpace = styled.div`
-  display: flex;
+  display: ${(props) => (props.hide ? 'flex' : 'none')};
   position: relative;
   color: white;
   border: 1px solid blue;
@@ -14,10 +14,10 @@ const StyledGameSpace = styled.div`
 
 const cardSlots = ['LEFT', 'CENTER', 'RIGHT'];
 
-const GameSpace = function CreateGameSpace() {
+const GameSpace = function CreateGameSpace({ planet, hide }) {
   return (
-    <StyledGameSpace>
-      GAME SPACE
+    <StyledGameSpace hide={hide}>
+      {planet}
       {cardSlots.map((slot) => <CardSlot key={slot} slot={slot} />)}
     </StyledGameSpace>
   );

@@ -3,7 +3,7 @@ import React from 'react';
 
 const AdminBar = function CreateAdminBar({ setCurrentView }) {
   function setView(event) {
-    setCurrentView(event.target.id);
+    setCurrentView(Number(event.target.id));
   }
 
 
@@ -13,7 +13,7 @@ const AdminBar = function CreateAdminBar({ setCurrentView }) {
       <button id="1" type="button" onClick={setView}>GO TO MARS</button>
       <button id="2" type="button" onClick={setView}>GO TO MEDINA</button>
     </div>
-  )
+  );
 };
 
 
