@@ -4,14 +4,16 @@ import useSound from 'use-sound';
 
 
 const StyledCardSlot = styled.div`
+  background-color: ${(props) => (props.isHovered ? 'green' : null)};
   border: 1px dashed green;
-  width: 150px;
-  height: 250px;
+  width: 250px;
+  height: 150px;
   margin: 2px;
 `;
 
 const CardSlot = function CreateCardSlot({ slot }) {
   const [cards, setCards] = useState([]);
+  const [isHovered, setIsHovered] = useState(false);
 
   const [clickSound] = useSound(
     '/sounds/card_touch.wav',
@@ -27,19 +29,37 @@ const CardSlot = function CreateCardSlot({ slot }) {
       console.error(error);
     }
     clickSound();
+    setIsHovered(false);
   }
 
   function handleDragOver(event) {
     event.preventDefault();
-    console.log('hover slot');
+    console.log('hovering slot');
+  }
+
+  function handleDragEnter(event) {
+    console.log('hover enter');
+    setIsHovered(true);
+  }
+
+  function handleDragLeave(event) {
+    console.log('hover leave');
+    setIsHovered(false);
   }
 
   useEffect(() => {
     console.log('render cardslot');
-  });
+  }, [isHovered]);
 
   return (
-    <StyledCardSlot id={slot} onDragOver={handleDragOver} onDrop={handleDrop} />
+    <StyledCardSlot
+      id={slot}
+      isHovered={isHovered}
+      onDragOver={handleDragOver}
+      onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    />
   );
 };
 

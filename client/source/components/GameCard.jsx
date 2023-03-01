@@ -7,8 +7,8 @@ const StyledGameCard = styled.div`
   border: 1px solid green;
   border-radius: 0.5rem;
   position: relative;
-  width: 150px;
-  height: 250px;
+  width: 250px;
+  height: 150px;
   margin: 4px;
   opacity: ${(props) => (props.isDragging ? 0.5 : 1.0)};
 `;
@@ -27,13 +27,17 @@ const GameCard = function CreateGameCard({ card }) {
 
   return (
     <StyledGameCard
-      id={card}
+      id={card.name}
       draggable="true"
       isDragging={isDragging}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
-      image={card}
-    />
+      image={card.url}
+    >
+      <span style={{ backgroundColor: 'darkgreen' }}>
+        {card.name}
+      </span>
+    </StyledGameCard>
   );
 };
 

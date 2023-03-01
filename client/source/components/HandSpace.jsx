@@ -15,9 +15,9 @@ const StyledHandSpace = styled.div`
 `;
 
 const cardImages = [
-  'https://static.wikia.nocookie.net/expanse/images/1/1a/Razorback.jpg',
-  'https://static.wikia.nocookie.net/expanse/images/5/54/RociArtS4.png',
-  'https://static.wikia.nocookie.net/expanse/images/1/16/Tynan_.png'];
+  { name: 'Razorback', url: 'https://static.wikia.nocookie.net/expanse/images/1/1a/Razorback.jpg' },
+  { name: 'Rocinante', url: 'https://static.wikia.nocookie.net/expanse/images/5/54/RociArtS4.png' },
+  { name: 'Tynan', url: 'https://static.wikia.nocookie.net/expanse/images/1/16/Tynan_.png' }];
 
 const HandSpace = function CreateHandSpace() {
   const [clickSound] = useSound(
