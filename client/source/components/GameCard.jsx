@@ -8,7 +8,7 @@ const StyledGameCard = styled.div`
   position: relative;
   width: 150px;
   height: 250px;
-  margin: 2px;
+  margin: 4px;
 `;
 
 function handleDrag(event) {
