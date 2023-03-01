@@ -6,6 +6,7 @@ import CardSlot from './CardSlot';
 
 const StyledGameSpace = styled.div`
   display: ${(props) => (props.hide ? 'flex' : 'none')};
+  justify-content: center;
   position: relative;
   color: white;
   border: 1px solid blue;

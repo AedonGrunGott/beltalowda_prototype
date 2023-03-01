@@ -25,7 +25,7 @@ const AppRoot = function CreateAppRoot() {
     <>
       <Starfield starCount="1000" />
       <Planet planet={planets[currentView]} />
-      <Header />
+      <Header planet={planets[currentView].name} />
       <OpponentSpace />
 
       <GameSpace planet={planets[0].name} hide={currentView === 0} id="0" />

@@ -7,6 +7,7 @@ import GameCard from './GameCard';
 
 const StyledHandSpace = styled.div`
   display: flex;
+  justify-content: center;
   min-height: 100px;
   position: relative;
   color: white;
