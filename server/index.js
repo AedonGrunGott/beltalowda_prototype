@@ -1,14 +1,35 @@
 require('dotenv').config();
 const express = require('express');
+const { Server } = require('socket.io');
+const http = require('http');
 
 const { router } = require('./router');
 const { consoleLogger } = require('./logger');
 
-const server = express();
-server.use(consoleLogger);
-server.use(router);
+const expressServer = express();
 
-server.listen(process.env.SERVER_PORT, (error) => {
+const httpServer = http.createServer(expressServer);
+const ioSocket = new Server(httpServer);
+
+ioSocket.on('connection', (socket) => {
+  console.log('SOCKET: a user connected');
+  socket.on('disconnect', () => {
+    console.log('SOCKET: user disconnected');
+  });
+  socket.on('message', (msg) => {
+    console.log('SOCKET: ', msg);
+    ioSocket.emit('message', msg);
+  });
+});
+
+ioSocket.on('connect_error', (error) => {
+  console.error(error);
+});
+
+expressServer.use(consoleLogger);
+expressServer.use(router);
+
+httpServer.listen(process.env.SERVER_PORT, (error) => {
   if (error) {
     console.error(error);
     throw error;

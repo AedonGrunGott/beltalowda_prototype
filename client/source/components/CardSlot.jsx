@@ -4,7 +4,7 @@ import useSound from 'use-sound';
 
 
 const StyledCardSlot = styled.div`
-  background-color: ${(props) => (props.isHovered ? 'green' : props.color)};
+  background-color: ${(props) => (props.isHovered ? 'RGBA(20,160,30,0.75)' : props.color)};
   border: 1px dashed ${(props) => props.color};
   border-radius: 0.5rem;
   width: 250px;

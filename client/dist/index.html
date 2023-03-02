@@ -23,6 +23,11 @@
 
   <script src="bundle.js"></script>
 
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var webSocket = io();
+    webSocket.emit('message', JSON.stringify({ message: 'A New Player Joined', sender: 'global'}));
+  </script>
 </body>
 
 </html>

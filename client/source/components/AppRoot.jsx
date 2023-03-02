@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import AdminBar from './AdminBar';
+import ChatBox from './ChatBox';
 import GameSpace from './GameSpace';
 import HandSpace from './HandSpace';
 import Header from './Header';
@@ -27,17 +28,19 @@ const AppRoot = function CreateAppRoot() {
       <Planet planet={planets[currentView]} />
       <Header planet={planets[currentView].name} />
 
-      <OpponentSpace planet={planets[0].name} hide={currentView === 0} id="o0" />
-      <OpponentSpace planet={planets[1].name} hide={currentView === 1} id="o1" />
-      <OpponentSpace planet={planets[2].name} hide={currentView === 2} id="o2" />
+      <div>
+        <OpponentSpace planet={planets[0].name} hide={currentView === 0} id="o0" />
+        <OpponentSpace planet={planets[1].name} hide={currentView === 1} id="o1" />
+        <OpponentSpace planet={planets[2].name} hide={currentView === 2} id="o2" />
 
-      <GameSpace planet={planets[0].name} hide={currentView === 0} id="p0" />
-      <GameSpace planet={planets[1].name} hide={currentView === 1} id="p1" />
-      <GameSpace planet={planets[2].name} hide={currentView === 2} id="p2" />
+        <GameSpace planet={planets[0].name} hide={currentView === 0} id="p0" />
+        <GameSpace planet={planets[1].name} hide={currentView === 1} id="p1" />
+        <GameSpace planet={planets[2].name} hide={currentView === 2} id="p2" />
+        <AdminBar setCurrentView={setCurrentView} />
+        <HandSpace />
+      </div>
 
-      <HandSpace />
-
-      <AdminBar setCurrentView={setCurrentView} />
+      <ChatBox />
     </>
   );
 };
