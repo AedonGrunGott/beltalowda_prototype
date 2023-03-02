@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const StyledGameCard = styled.div`
   background-image: ${(props) => `url(${props.image})`};
+  background-size: cover;
   border: 1px solid green;
   border-radius: 0.5rem;
   position: relative;
@@ -11,6 +12,12 @@ const StyledGameCard = styled.div`
   height: 150px;
   margin: 4px;
   opacity: ${(props) => (props.isDragging ? 0.5 : 1.0)};
+`;
+
+const StyledTitle = styled.span`
+  font-family: 'Press Start 2P';
+  display: block;
+  margin: 10px;
 `;
 
 const GameCard = function CreateGameCard({ card }) {
@@ -34,9 +41,9 @@ const GameCard = function CreateGameCard({ card }) {
       onDragEnd={handleDragEnd}
       image={card.url}
     >
-      <span style={{ backgroundColor: 'darkgreen' }}>
+      <StyledTitle>
         {card.name}
-      </span>
+      </StyledTitle>
     </StyledGameCard>
   );
 };

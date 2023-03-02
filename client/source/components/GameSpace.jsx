@@ -9,7 +9,6 @@ const StyledGameSpace = styled.div`
   justify-content: center;
   position: relative;
   color: white;
-  border: 1px solid blue;
   margin: 10px;
 `;
 
@@ -18,8 +17,7 @@ const cardSlots = ['LEFT', 'CENTER', 'RIGHT'];
 const GameSpace = function CreateGameSpace({ planet, hide }) {
   return (
     <StyledGameSpace hide={hide}>
-      {planet}
-      {cardSlots.map((slot) => <CardSlot key={slot} slot={slot} />)}
+      {cardSlots.map((slot) => <CardSlot drag color="RGBA(20,120,80,0.5)" key={slot} slot={slot} />)}
     </StyledGameSpace>
   );
 };

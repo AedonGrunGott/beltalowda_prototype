@@ -1,19 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import CardSlot from './CardSlot';
 
 const StyledSpace = styled.div`
-  display: flex;
+  display: ${(props) => (props.hide ? 'flex' : 'none')};
+  justify-content: center;
   position: relative;
   color: white;
-  border: 1px solid red;
   margin: 10px;
 `;
 
-const OpponentSpace = function CreateOpponentSpace() {
+const OpponentSpace = function CreateOpponentSpace({ planet, hide }) {
   return (
-    <StyledSpace>
-      OPPONENT PLAY AREA
+    <StyledSpace hide={hide}>
+      <CardSlot color="RGBA(120,40,80,0.5)" />
+      <CardSlot color="RGBA(120,40,80,0.5)" />
+      <CardSlot color="RGBA(120,40,80,0.5)" />
     </StyledSpace>
   );
 };

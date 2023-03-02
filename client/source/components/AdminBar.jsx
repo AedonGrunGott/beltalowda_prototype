@@ -8,6 +8,7 @@ const StyledButton = styled.button`
     transform: scale(1.1);
     background-color: #5e7a61;
   }
+  padding: 2px;
   transition: transform 0.2s;
   background-color: grey;
   margin: 8px;

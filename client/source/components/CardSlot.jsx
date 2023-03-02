@@ -4,14 +4,15 @@ import useSound from 'use-sound';
 
 
 const StyledCardSlot = styled.div`
-  background-color: ${(props) => (props.isHovered ? 'green' : null)};
-  border: 1px dashed green;
+  background-color: ${(props) => (props.isHovered ? 'green' : props.color)};
+  border: 1px dashed ${(props) => props.color};
+  border-radius: 0.5rem;
   width: 250px;
   height: 150px;
-  margin: 2px;
+  margin: 4px 10px;
 `;
 
-const CardSlot = function CreateCardSlot({ slot }) {
+const CardSlot = function CreateCardSlot({ color, drag, slot }) {
   const [cards, setCards] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -21,6 +22,7 @@ const CardSlot = function CreateCardSlot({ slot }) {
   );
 
   function handleDrop(event) {
+    if (!drag) { return; }
     event.preventDefault();
     const data = event.dataTransfer.getData('card', event.target.id);
     console.log('dropping', data, 'into', event.target.id, cards);
@@ -34,16 +36,19 @@ const CardSlot = function CreateCardSlot({ slot }) {
   }
 
   function handleDragOver(event) {
+    if (!drag) { return; }
     event.preventDefault();
     console.log('hovering slot');
   }
 
   function handleDragEnter(event) {
+    if (!drag) { return; }
     console.log('hover enter');
     setIsHovered(true);
   }
 
   function handleDragLeave(event) {
+    if (!drag) { return; }
     console.log('hover leave');
     setIsHovered(false);
   }
@@ -55,6 +60,7 @@ const CardSlot = function CreateCardSlot({ slot }) {
   return (
     <StyledCardSlot
       id={slot}
+      color={color}
       isHovered={isHovered}
       onDragOver={handleDragOver}
       onDragEnter={handleDragEnter}
