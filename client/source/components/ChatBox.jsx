@@ -22,7 +22,8 @@ const StyledChatBox = styled.div`
 const StyledMessage = styled.li`
   color: ${(props) => ((props.sender === 'global') ? 'green' : 'white')};
   margin: '2px 2px';
-  width: '90%';
+  width: 190px;
+  word-wrap: break-word;
 `;
 
 const ChatBox = function CreateChatBox() {

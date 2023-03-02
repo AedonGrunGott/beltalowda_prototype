@@ -49,7 +49,11 @@ const AdminBar = function CreateAdminBar({ setCurrentView }) {
   );
 
   function handleCommit() {
-    window.webSocket.emit('message', 'PLAYER CLICKED COMMIT');
+    const message = {
+      message: `${window.webSocket.id} IS COMMITED`,
+      sender: 'global',
+    };
+    window.webSocket.emit('message', JSON.stringify(message));
     clickSound();
   }
 
