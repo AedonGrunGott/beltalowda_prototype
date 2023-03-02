@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import useSound from 'use-sound';
 
@@ -24,7 +24,7 @@ const StyledGoButton = styled.button`
   }
   padding: 2px;
   transition: transform 0.2s;
-  background-color: grey;
+  background-color: ${(props) => (props.commited ? 'orange' : 'grey') };
   margin: 8px;
   box-shadow: 2px 2px #22AA44,
              -2px -2px #CCCCCC;
@@ -38,6 +38,8 @@ const StyledAdminBar = styled.div`
 `;
 
 const AdminBar = function CreateAdminBar({ setCurrentView }) {
+  const [commited, setCommited] = useState(false);
+
   const [hoverSound] = useSound(
     '/sounds/button_hover.wav',
     { volume: 0.5 },
@@ -49,12 +51,15 @@ const AdminBar = function CreateAdminBar({ setCurrentView }) {
   );
 
   function handleCommit() {
+    setCommited(!commited);
+    const commitStatus = !commited ? 'COMMITED' : 'BACKING DOWN';
     const message = {
-      message: `${window.webSocket.id} IS COMMITED`,
+      message: `${window.webSocket.id} IS ${commitStatus}`,
       sender: 'global',
     };
     window.webSocket.emit('message', JSON.stringify(message));
     clickSound();
+
   }
 
   function setView(event) {
@@ -70,7 +75,7 @@ const AdminBar = function CreateAdminBar({ setCurrentView }) {
         <StyledButton id="2" type="button" onMouseOver={hoverSound} onClick={setView}>GO TO MEDINA</StyledButton>
       </div>
       <div>
-        <StyledGoButton onMouseOver={hoverSound} onClick={handleCommit}>COMMIT</StyledGoButton>
+        <StyledGoButton commited={commited} onMouseOver={hoverSound} onClick={handleCommit}>COMMIT</StyledGoButton>
       </div>
     </StyledAdminBar>
   );
