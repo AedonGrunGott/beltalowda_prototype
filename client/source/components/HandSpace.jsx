@@ -23,15 +23,8 @@ const StyledHandSpace = styled.div`
               rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 `;
 
-const cardImages = [
-  { name: 'Razorback', url: 'https://static.wikia.nocookie.net/expanse/images/1/1a/Razorback.jpg' },
-  { name: 'Rocinante', url: 'https://static.wikia.nocookie.net/expanse/images/5/54/RociArtS4.png' },
-  { name: 'Tynan', url: 'https://static.wikia.nocookie.net/expanse/images/1/16/Tynan_.png' },
-  { name: 'Donnager', url: 'https://static.wikia.nocookie.net/expanse/images/8/8b/MCRN_Donnager_Render.jpg' },
-  { name: 'Agatha King', url: 'https://static.wikia.nocookie.net/expanse/images/d/d3/Truman_NorthFront.png' },
-];
 
-const HandSpace = function CreateHandSpace() {
+const HandSpace = function CreateHandSpace({ cardData, commited, user }) {
   const [clickSound] = useSound(
     '/sounds/card_touch.wav',
     { volume: 1.0 },
@@ -51,7 +44,11 @@ const HandSpace = function CreateHandSpace() {
 
   return (
     <StyledHandSpace onDragOver={handleDragOver} onDrop={handleDrop}>
-      {cardImages.map((card) => <GameCard key={card.name} card={card} />)}
+      {cardData.map((card) => {
+        if (card.level <= user.level) {
+          return <GameCard key={card.name} card={card} commited={commited} />
+        }
+      })}
     </StyledHandSpace>
   );
 };

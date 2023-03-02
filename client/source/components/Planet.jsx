@@ -10,7 +10,7 @@ const StyledPlanet = styled.img`
 
 const Planet = function CreateEarth({ planet }) {
   return (
-    <StyledPlanet src={planet.url} />
+    <StyledPlanet draggable="false" src={planet.url} />
   );
 };
 

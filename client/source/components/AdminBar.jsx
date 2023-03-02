@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import useSound from 'use-sound';
+import axios from 'axios';
+
 
 const StyledButton = styled.button`
   &:hover {
@@ -24,7 +26,7 @@ const StyledGoButton = styled.button`
   }
   padding: 2px;
   transition: transform 0.2s;
-  background-color: ${(props) => (props.commited ? 'orange' : 'grey') };
+  background-color: ${(props) => (props.commited ? 'orange' : 'grey')};
   margin: 8px;
   box-shadow: 2px 2px #22AA44,
              -2px -2px #CCCCCC;
@@ -37,8 +39,8 @@ const StyledAdminBar = styled.div`
   align-items: center;
 `;
 
-const AdminBar = function CreateAdminBar({ setCurrentView }) {
-  const [commited, setCommited] = useState(false);
+const AdminBar = function CreateAdminBar({ commited, setCommited, setCurrentUser, setCurrentView, user }) {
+
 
   const [hoverSound] = useSound(
     '/sounds/button_hover.wav',
@@ -54,12 +56,11 @@ const AdminBar = function CreateAdminBar({ setCurrentView }) {
     setCommited(!commited);
     const commitStatus = !commited ? 'COMMITED' : 'BACKING DOWN';
     const message = {
-      message: `${window.webSocket.id} IS ${commitStatus}`,
+      message: `${user.name} IS ${commitStatus}`,
       sender: 'global',
     };
     window.webSocket.emit('message', JSON.stringify(message));
     clickSound();
-
   }
 
   function setView(event) {
@@ -67,15 +68,35 @@ const AdminBar = function CreateAdminBar({ setCurrentView }) {
     setCurrentView(Number(event.target.id));
   }
 
+  function handleLogin() {
+    const name = prompt('what\'s your name, Commander?');
+    const url = `http://${process.env.SERVER_URL}:${process.env.SERVER_PORT}/users`;
+    console.log(url);
+    axios.get(url)
+      .then((response) => {
+        const userList = response.data;
+        userList.forEach((usr) => {
+          if (usr.name === name) {
+            console.log('valid user');
+            setCurrentUser(usr);
+            return;
+          }
+          alert('unknown user');
+        });
+      })
+      .catch((error) => { console.error(error); });
+  }
+
   return (
     <StyledAdminBar style={{ position: 'relative' }}>
       <div>
         <StyledButton id="0" type="button" onMouseOver={hoverSound} onClick={setView}>GO TO EARTH</StyledButton>
         <StyledButton id="1" type="button" onMouseOver={hoverSound} onClick={setView}>GO TO MARS</StyledButton>
-        <StyledButton id="2" type="button" onMouseOver={hoverSound} onClick={setView}>GO TO MEDINA</StyledButton>
+        <StyledButton id="2" type="button" onMouseOver={hoverSound} onClick={setView}>GO TO THE BEHEMOTH</StyledButton>
       </div>
       <div>
         <StyledGoButton commited={commited} onMouseOver={hoverSound} onClick={handleCommit}>COMMIT</StyledGoButton>
+        <StyledButton id="login" type="button" onMouseOver={hoverSound} onClick={handleLogin}>LOGIN</StyledButton>
       </div>
     </StyledAdminBar>
   );

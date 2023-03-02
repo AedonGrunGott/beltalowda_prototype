@@ -21,19 +21,20 @@ const Message = mongoose.model('Message', messageSchema);
 
 const userSchema = mongoose.Schema({
   name: String,
-  shipsUnlocked: [
-    {
-      type: Schema.Types.ObjectId,
-    },
-  ],
+  level: Number,
+  faction: {
+    type: String,
+    enum: ['belter', 'mcrn', 'un'],
+  },
 });
-const User = mongoose.model('User', messageSchema);
+const User = mongoose.model('User', userSchema);
 
 const shipSchema = mongoose.Schema({
   name: String,
+  level: Number,
   url: String,
 });
-const Ship = mongoose.model('Ship', messageSchema);
+const Ship = mongoose.model('Ship', shipSchema);
 
 
 module.exports = {
