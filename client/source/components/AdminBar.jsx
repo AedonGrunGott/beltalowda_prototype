@@ -70,7 +70,7 @@ const AdminBar = function CreateAdminBar({ setCurrentView }) {
         <StyledButton id="2" type="button" onMouseOver={hoverSound} onClick={setView}>GO TO MEDINA</StyledButton>
       </div>
       <div>
-        <StyledGoButton onClick={handleCommit}>COMMIT</StyledGoButton>
+        <StyledGoButton onMouseOver={hoverSound} onClick={handleCommit}>COMMIT</StyledGoButton>
       </div>
     </StyledAdminBar>
   );

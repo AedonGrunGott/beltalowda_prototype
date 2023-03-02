@@ -5,6 +5,7 @@ import ChatBox from './ChatBox';
 import GameSpace from './GameSpace';
 import HandSpace from './HandSpace';
 import Header from './Header';
+import MusicPlayer from './MusicPlayer';
 import OpponentSpace from './OpponentSpace';
 import Planet from './Planet';
 import Starfield from './Starfield';
@@ -41,6 +42,7 @@ const AppRoot = function CreateAppRoot() {
       </div>
 
       <ChatBox />
+      <MusicPlayer />
     </>
   );
 };
